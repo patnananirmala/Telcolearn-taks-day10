@@ -1,0 +1,49 @@
+# Placeholder functions
+# Task 1: IP Reachability Tester (replace with your actual function)
+  import subprocess
+    ip_list = ["192.168.1.1", "8.8.8.8", "10.0.0.1", "1.1.1.1"]
+  def ip_reachability(ip):
+    result = subprocess.run(["ping", "-n", "1", ip])
+    if result.returncode == 0:
+        print(f"{ip} is reachable")
+    else:
+        print(f"{ip} is unreachable")
+# Optional: test all IPs
+if __name__ == "__main__":
+    for ip in ip_list:
+        ip_reachability(ip)
+# Task 2: Latency Summary Function (replace with real summary function)
+  latency_list = [8, 44, 34, 23, 22, 10, 24]
+def calculate_avg(data):
+    return sum(data) / len(data)
+def get_summary(data):
+    summary = {
+        "min": min(data),
+        "max": max(data),
+        "avg": calculate_avg(data)
+    }
+    return summary
+# Optional: test
+if __name__ == "__main__":
+    result = get_summary(latency_list)
+    print(result)
+# Task 3: Menu-Driven CLI Tool
+  from ip_module import ip_reachability
+from latency_module import get_summary
+while True:
+    print("1. IP Reachability")
+    print("2. Latency Summary")
+    print("3. Exit")
+    choice = input("choose: ")
+    if choice == "1":
+        ip = input("IP: ")
+        ip_reachability(ip)
+    elif choice == "2":
+        data = list(map(int, input("latency values (comma separated): ").split(",")))
+        print(get_summary(data))
+    elif choice == "3":
+        print("bye")
+        break
+    else:
+        print("invalid choice")
+
