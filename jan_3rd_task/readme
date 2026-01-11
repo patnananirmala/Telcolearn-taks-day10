@@ -1,0 +1,45 @@
+##Question 1
+Running Two Static Websites on Different Ports
+Scenario
+Two static websites are provided: one student portal and one faculty portal. Both must run simultaneously using Docker containers.
+Tasks
+1. Build two separate images or reuse one image twice.
+2. Run both containers in parallel on different host ports.
+3. Access both websites in browser.
+4. Verify that no port conflict occurs.
+##Question 2
+Liveness and Readiness Probes
+YAML Manifest:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probe-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: probe-demo
+  template:
+    metadata:
+      labels:
+        app: probe-demo
+    spec:
+      containers:
+      - name: probe-container
+        image: nginx
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 2
+Tasks:
+• Deploy YAML
+• Describe pod conditions
+• Break nginx content
+• Observe probe failure
